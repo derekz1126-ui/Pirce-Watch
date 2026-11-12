@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.*
+!.env.example
+*.log
+*.tar.gz
+*.zip
+!dist/downloads/Pirce-Watch-browser.zip
+.DS_Store
+var/
+*.sqlite*
+worker/assets.mjs
+dist/server/
+dist/.openai/
+.openai/

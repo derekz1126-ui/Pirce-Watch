@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Pirce Watch 本机采集助手",
+  "version": "0.4.1",
+  "description": "从官方商品页读取可见规格与报价，仅发送到已配对的本机 Pirce Watch。",
+  "minimum_chrome_version": "120",
+  "permissions": ["storage", "alarms"],
+  "host_permissions": [
+    "https://item.jd.com/*", "https://item.m.jd.com/*",
+    "https://item.taobao.com/*", "https://h5.m.taobao.com/*",
+    "https://detail.tmall.com/*", "https://detail.m.tmall.com/*",
+    "http://127.0.0.1:4173/*", "http://localhost:4173/*"
+  ],
+  "background": { "service_worker": "background.mjs", "type": "module" },
+  "action": { "default_popup": "popup.html", "default_title": "Pirce Watch 采集状态" },
+  "content_scripts": [
+    {
+      "matches": ["https://item.jd.com/*", "https://item.m.jd.com/*", "https://item.taobao.com/*", "https://h5.m.taobao.com/*", "https://detail.tmall.com/*", "https://detail.m.tmall.com/*"],
+      "js": ["extractor.js", "content.js"], "run_at": "document_end"
+    },
+    {
+      "matches": ["http://127.0.0.1:4173/*", "http://localhost:4173/*"],
+      "js": ["local-bridge.js"], "run_at": "document_end"
+    }
+  ]
+}
